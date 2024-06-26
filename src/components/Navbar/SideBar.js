@@ -2,7 +2,6 @@ import styles from './sideBar.module.scss';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import {
 	FaBars,
-	FaAngleDoubleRight,
 	FaIdCard,
 	FaEdit,
 	FaSignOutAlt,
@@ -12,19 +11,25 @@ const SidebarComponent = ({
 	collapsed,
 	toggled,
 	handleToggleSidebar,
-	handleCollapsedChange,
+	handleCollapsedChange
 }) => {
+	
 	const logoff = () => {
 		localStorage.removeItem('cart-token');
 		window.location.href = '/';
 	};
+
+	const toggleNav = ()=> {
+		handleCollapsedChange()
+		handleToggleSidebar()
+	}
 
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<FaBars
 					className={styles.menuIcon}
-					onClick={handleToggleSidebar}
+					onClick={toggleNav}
 				/>
 			</div>
 			<Sidebar
@@ -36,28 +41,7 @@ const SidebarComponent = ({
 				height="100%"
 				collapsedWidth="4.5rem"
 			>
-				<Menu iconShape="circle">
-					{collapsed ? (
-						<MenuItem
-							icon={<FaAngleDoubleRight />}
-							onClick={handleCollapsedChange}
-						></MenuItem>
-					) : (
-						<MenuItem>
-							<div
-								style={{
-									padding: '9px',
-									textTransform: 'uppercase',
-									fontWeight: 'bold',
-									fontSize: 15,
-									letterSpacing: '1px',
-								}}
-							>
-								Carteirinha
-							</div>
-						</MenuItem>
-					)}
-				</Menu>
+				<h1 className={`${collapsed && styles.collapsed}`} >Carteirinha</h1>
 				<Menu iconShape="circle">
 					<MenuItem
 						onClick={() => {

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import styles from './signin.module.scss';
+import styles from './signup.module.scss';
 import { getApiClient } from '../../services/axios';
 import { firebaseStorage } from '../../services/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { toast } from 'react-toastify';
 import showToast from '../utils/toast';
+import validate from './validate';
 
-export default function Signin({ setOpenLogin }) {
+export default function Signup({ setOpenLogin }) {
 	const [formData, setFormData] = useState({
 		email: '',
 		name: '',
@@ -32,7 +32,8 @@ export default function Signin({ setOpenLogin }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
+		const isValid = validate(formData)
+		if(!isValid) return
 		if (formData.photo) {
 			let text = 'Cadastro efetuado com sucesso, realize o login';
 			try {
@@ -67,7 +68,7 @@ export default function Signin({ setOpenLogin }) {
 				}
 			} catch (error) {
 				text =
-					'Erro ao realizar upload do arquivo, verifique se o navegador possui as parmissões';
+					'Erro ao realizar upload do arquivo, verifique se o navegador possui as permissões';
 				showToast({ text: text, type: 'error' });
 				console.error('Erro ao enviar arquivo:', error);
 			}

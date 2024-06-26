@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import { useEffect, useState } from 'react';
 import styles from './edit.module.scss';
 import { getApiClient } from '../../services/axios.js';
@@ -5,11 +6,11 @@ import showToast from '../utils/toast';
 import { Logo } from '../utils/icons';
 import Sidebar from '../Navbar/SideBar';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { firebaseStorage } from '../../services/firebase'; // Certifique-se de ter configurado o Firebase
+import { firebaseStorage } from '../../services/firebase';
 import { formatDateToFront } from '../utils/date';
-import { checkToken } from '../Home/Home'; // Certifique-se de ajustar o caminho conforme necessário
+import { checkToken } from '../Home/Home';
 
-export default function Edit({}) {
+export default function Edit() {
 	const [user, setUser] = useState(undefined);
 	const [name, setName] = useState('');
 	const [validity, setValidity] = useState('');
@@ -20,14 +21,13 @@ export default function Edit({}) {
 	const [collapsed, setCollapsed] = useState(false);
 	const [toggled, setToggled] = useState(false);
 
+	const handleToggleSidebar = () => {
+		setToggled(!toggled);
+	};
+
 	const handleCollapsedChange = () => {
 		setCollapsed(!collapsed);
 	};
-
-	const handleToggleSidebar = (value) => {
-		setToggled(value);
-	};
-
 	const handleSave = async () => {
 		const tk = localStorage.getItem('cart-token');
 		try {
@@ -42,14 +42,11 @@ export default function Edit({}) {
 			}
 			const userDecoded = await getApiClient(tk).get('/decode-token');
 			const userId = userDecoded.data.user.id;
-			const updatedUser = await getApiClient(tk).put(
-				`/user/update/${userId}`,
-				{
-					name: name,
-					email: userDecoded.data.user.email,
-					photo: photoUrl,
-				}
-			);
+			await getApiClient(tk).put(`/user/update/${userId}`, {
+				name: name,
+				email: userDecoded.data.user.email,
+				photo: photoUrl,
+			});
 			setUser((prevUser) => ({
 				...prevUser,
 				name: name,
@@ -61,7 +58,7 @@ export default function Edit({}) {
 				text: 'Dados atualizados com sucesso!',
 				type: 'success',
 			});
-			window.location.href = "/home"
+			window.location.href = '/home';
 		} catch (error) {
 			showToast({
 				text: 'Erro ao salvar dados, tente novamente.',

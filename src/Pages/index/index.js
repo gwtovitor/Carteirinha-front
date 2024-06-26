@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Login from 'src/components/Login/Login';
-import Signin from 'src/components/Signin/Signin';
+import Signup from 'src/components/Signup/Signup';
 import styles from './index.module.scss';
 
 export default function Index() {
@@ -8,7 +8,7 @@ export default function Index() {
 
 	return (
 		<>
-			{openLogin ? <Login></Login> : <Signin setOpenLogin={setOpenLogin}></Signin>}
+			{openLogin ? <Login/> : <Signup setOpenLogin={setOpenLogin}/>}
 
 			<button
 				onClick={() => setOpenLogin((prev) => !prev)}

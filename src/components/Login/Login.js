@@ -30,7 +30,7 @@ export default function Login() {
             showToast({ text: 'Login realizado com sucesso', type: 'success' });
             window.location.href = '/home';
         } catch (error) {
-            showToast({ text: 'Erro ao realizar login', type: 'error' });
+            showToast({ text: 'Usuário ou senha inválidos', type: 'error' });
             console.error('Erro ao realizar login:', error);
         }
     };

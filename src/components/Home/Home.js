@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
+
 import { useEffect, useState } from 'react';
 import styles from './home.module.scss';
 import { getApiClient } from '../../services/axios.js';
@@ -6,7 +7,7 @@ import showToast from '../utils/toast';
 import { Logo } from '../utils/icons';
 import { formatDateToFront } from '../utils/date';
 import Sidebar from '../Navbar/SideBar';
-import { FaAngleDoubleRight } from 'react-icons/fa';
+
 export const checkToken = async (setUser) => {
 	const tk = localStorage.getItem('cart-token');
 	try {
@@ -43,11 +44,6 @@ export default function Home() {
 	const handleCollapsedChange = () => {
 		setCollapsed(!collapsed);
 	};
-	function mobileOpenSideBar() {
-		setCollapsed(false);
-		setToggled(true);
-	}
-
 	useEffect(() => {
 		checkToken(setUser);
 	}, []);
@@ -60,19 +56,13 @@ export default function Home() {
 				handleToggleSidebar={handleToggleSidebar}
 				handleCollapsedChange={handleCollapsedChange}
 			/>
-			<button
-				onClick={() => mobileOpenSideBar()}
-				className={styles.openNav}
-			>
-				{<FaAngleDoubleRight className={styles.icon} />}
-			</button>
 			<div className={styles.cart}>
 				<Logo className={styles.logo}></Logo>
 				<hr />
 				<img width="100px" height="140px" src={user.photo}></img>
 				<div className={styles.clientData}>
 					<span>Nome</span>
-					<h4>{user.name}</h4>
+					<h4 className={styles.name}>{user.name}</h4>
 				</div>
 				<div className={styles.clientData}>
 					<span>Acesso válido até</span>
@@ -83,6 +73,6 @@ export default function Home() {
 			</div>
 		</div>
 	) : (
-		<div></div>
+		<div>Loading...</div>
 	);
 }
