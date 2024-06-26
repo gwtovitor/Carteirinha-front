@@ -15,7 +15,6 @@
 		"emitDecoratorMetadata": true,
 		"strictPropertyInitialization": false,
 
-		//"composite": true,
 		"outDir": "./dist",
 		"baseUrl": ".",
 		"skipLibCheck": true,
@@ -35,6 +34,6 @@
 			"@infra/*": ["./src/infra/*"]
 		}
 	},
-	"exclude": ["node_modules", "dist"]
-	//"include": [ "src/**/*" ], // if you need absolute path or path alias outside src then include the directory accordingly
+	"exclude": ["node_modules", "dist"],
+	"include": [ "src/**/*" ], 
 }
