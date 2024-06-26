@@ -32,8 +32,8 @@ export default function Signup({ setOpenLogin }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const isValid = validate(formData)
-		if(!isValid) return
+		const isValid = validate(formData);
+		if (!isValid) return;
 		if (formData.photo) {
 			let text = 'Cadastro efetuado com sucesso, realize o login';
 			try {
@@ -140,6 +140,7 @@ export default function Signup({ setOpenLogin }) {
 					id="photo"
 					name="photo"
 					className={styles.input}
+					accept="image/*"
 					onChange={handleFileChange}
 				/>
 
