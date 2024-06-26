@@ -1,0 +1,11 @@
+@import './colors.scss';
+.app {
+    width: 100dvw;
+    height: 100dvh;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--gray-50);
+  }

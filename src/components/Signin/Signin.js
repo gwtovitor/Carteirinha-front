@@ -1,0 +1,151 @@
+import { useState } from 'react';
+import styles from './signin.module.scss';
+import { getApiClient } from '../../services/axios';
+import { firebaseStorage } from '../../services/firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { toast } from 'react-toastify';
+import showToast from '../utils/toast';
+
+export default function Signin({ setOpenLogin }) {
+	const [formData, setFormData] = useState({
+		email: '',
+		name: '',
+		password: '',
+		confirmPassword: '',
+		photo: null,
+	});
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData((prevData) => ({
+			...prevData,
+			[name]: value,
+		}));
+	};
+
+	const handleFileChange = (e) => {
+		setFormData((prevData) => ({
+			...prevData,
+			photo: e.target.files[0],
+		}));
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		if (formData.photo) {
+			let text = 'Cadastro efetuado com sucesso, realize o login';
+			try {
+				const storageRef = ref(
+					firebaseStorage,
+					`photos/${formData.photo.name}`
+				);
+				await uploadBytes(storageRef, formData.photo);
+				const photoUrl = await getDownloadURL(storageRef);
+
+				try {
+					await getApiClient().post('/signup', {
+						email: formData.email,
+						name: formData.name,
+						password: formData.password,
+						confirmPassword: formData.confirmPassword,
+						photo: photoUrl,
+					});
+
+					setOpenLogin(true);
+					showToast({ text: text, type: 'success' });
+				} catch (error) {
+					text = 'Erro ao realizar cadastro';
+					if (
+						error.response.data.message ===
+						'A user with this email address already exists'
+					) {
+						text = 'Email já cadastrado';
+					}
+					showToast({ text: text, type: 'error' });
+					console.error('Erro ao realizar cadastro:', error);
+				}
+			} catch (error) {
+				text =
+					'Erro ao realizar upload do arquivo, verifique se o navegador possui as parmissões';
+				showToast({ text: text, type: 'error' });
+				console.error('Erro ao enviar arquivo:', error);
+			}
+		}
+	};
+
+	return (
+		<div className={styles.container}>
+			<h3>Criar Conta</h3>
+			<form className={styles.form} onSubmit={handleSubmit}>
+				<label htmlFor="name" className={styles.label}>
+					Nome:
+				</label>
+				<input
+					required
+					type="text"
+					id="name"
+					name="name"
+					className={styles.input}
+					value={formData.name}
+					onChange={handleChange}
+				/>
+
+				<label htmlFor="email" className={styles.label}>
+					Email:
+				</label>
+				<input
+					required
+					type="email"
+					id="email"
+					name="email"
+					className={styles.input}
+					value={formData.email}
+					onChange={handleChange}
+				/>
+
+				<label htmlFor="password" className={styles.label}>
+					Senha:
+				</label>
+				<input
+					required
+					type="password"
+					id="password"
+					name="password"
+					className={styles.input}
+					value={formData.password}
+					onChange={handleChange}
+				/>
+
+				<label htmlFor="confirmPassword" className={styles.label}>
+					Confirmação de Senha:
+				</label>
+				<input
+					required
+					type="password"
+					id="confirmPassword"
+					name="confirmPassword"
+					className={styles.input}
+					value={formData.confirmPassword}
+					onChange={handleChange}
+				/>
+
+				<label htmlFor="photo" className={styles.label}>
+					Foto:
+				</label>
+				<input
+					required
+					type="file"
+					id="photo"
+					name="photo"
+					className={styles.input}
+					onChange={handleFileChange}
+				/>
+
+				<button type="submit" className={styles.button}>
+					Cadastrar
+				</button>
+			</form>
+		</div>
+	);
+}

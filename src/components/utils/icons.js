@@ -74,3 +74,21 @@ export const Icon = (props) => (
 	  />
 	</svg>
   )
+
+
+  export const RigthArrow = (props) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={200}
+      height={200}
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="m15.632 12-4.748-8.968-1.768.936L13.368 12l-4.252 8.032 1.768.936z"
+      />
+    </svg>
+  )
+
+  
