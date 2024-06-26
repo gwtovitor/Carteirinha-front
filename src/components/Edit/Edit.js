@@ -107,7 +107,11 @@ export default function Edit() {
 				<div className={styles.clientData}>
 					<span>Foto</span>
 					<input
+						required
 						type="file"
+						id="photo"
+						name="photo"
+						className={styles.input}
 						accept="image/*"
 						onChange={handlePhotoChange}
 					/>
