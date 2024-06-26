@@ -8,7 +8,7 @@ import Sidebar from '../Navbar/SideBar';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { firebaseStorage } from '../../services/firebase';
 import { formatDateToFront } from '../utils/date';
-import { checkToken } from '../Home/Home';
+import { checkToken } from '../../Pages/Home/Home';
 
 export default function Edit() {
 	const [user, setUser] = useState(undefined);

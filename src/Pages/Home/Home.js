@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react';
 import styles from './home.module.scss';
 import { getApiClient } from '../../services/axios.js';
-import showToast from '../utils/toast';
-import { Logo } from '../utils/icons';
-import { formatDateToFront } from '../utils/date';
-import Sidebar from '../Navbar/SideBar';
+import showToast from '../../components/utils/toast';
+import { Logo } from '../../components/utils/icons';
+import { formatDateToFront } from '../../components/utils/date';
+import Sidebar from '../../components/Navbar/SideBar';
 
 export const checkToken = async (setUser) => {
 	const tk = localStorage.getItem('cart-token');

@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import styles from './styles/styles.module.scss'
 
 import Index from './Pages/index';
-import Home from './components/Home/Home';
+import Home from './Pages/Home/Home';
 import Edit from './components/Edit/Edit'
 
 function App() {
