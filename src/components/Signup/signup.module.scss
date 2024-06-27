@@ -1,59 +1,62 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--gray-50);
-    font-family: 'Roboto', sans-serif;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--gray-50);
+	font-family: 'Roboto', sans-serif;
 
-    .form {
-        width: 100%;
-        max-width: 400px;
-        padding: 20px;
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    }
+	.form {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		max-width: 400px;
+		padding: 20px;
+		background-color: white;
+		border-radius: 8px;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+		.label {
+			margin-bottom: 8px;
+			font-weight: 500;
+			color: var(--gray-700);
+		}
+		.passwordBar {
+			width: calc(100% - 20px);
+		}
+		.input {
+			width: calc(100% - 20px);
+			padding: 8px;
+			margin-bottom: 1rem;
+			border: 1px solid var(--gray-300);
+			border-radius: 4px;
+			font-size: 14px;
+			color: var(--gray-800);
+			box-sizing: border-box;
+		}
 
-    .label {
-        margin-bottom: 8px;
-        font-weight: 500;
-        color: var(--gray-700);
-    }
-    
-    .input {
-        width: calc(100% - 20px);
-        padding: 8px;
-        margin-bottom: 16px;
-        border: 1px solid var(--gray-300);
-        border-radius: 4px;
-        font-size: 14px;
-        color: var(--gray-800);
-        box-sizing: border-box; 
-    }
-    
-    .button {
-        width: 100%;
-        padding: 12px;
-        border: none;
-        background-color: var(--primary-500);
-        color: white;
-        font-size: 16px;
-        font-weight: 500;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    
-    .button:hover {
-        background-color: var(--primary-700);
-    }
+		.button {
+			width: 100%;
+			padding: 12px;
+			border: none;
+			background-color: var(--primary-500);
+			color: white;
+			font-size: 16px;
+			font-weight: 500;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
 
-    @media (max-width: 600px) {
-        .form {
-            width: 90%; 
-            max-width: 100%; 
-        }
-    }
+		.button:hover {
+			background-color: var(--primary-700);
+		}
+	}
+
+	@media (max-width: 600px) {
+		.form {
+			width: 90%;
+			max-width: 100%;
+		}
+	}
 }

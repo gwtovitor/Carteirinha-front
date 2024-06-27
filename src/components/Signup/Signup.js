@@ -5,8 +5,12 @@ import { firebaseStorage } from '../../services/firebase';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import showToast from '../utils/toast';
 import validate from './validate';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 export default function Signup({ setOpenLogin }) {
+
+	const scoreWords = ["","Fraca", "Ok", "Boa", "Excelente"]
+	
 	const [formData, setFormData] = useState({
 		email: '',
 		name: '',
@@ -117,7 +121,7 @@ export default function Signup({ setOpenLogin }) {
 					value={formData.password}
 					onChange={handleChange}
 				/>
-
+				<PasswordStrengthBar className={styles.passwordBar} shortScoreWord={"Muito fraca"} scoreWords={scoreWords} password={formData.password} />
 				<label htmlFor="confirmPassword" className={styles.label}>
 					Confirmação de Senha:
 				</label>

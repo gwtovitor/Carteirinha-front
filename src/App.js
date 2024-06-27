@@ -7,7 +7,7 @@ import styles from './styles/styles.module.scss'
 
 import Index from './Pages/index';
 import Home from './Pages/Home/Home';
-import Edit from './components/Edit/Edit'
+import Edit from './Pages/Edit/Edit'
 
 function App() {
   return (

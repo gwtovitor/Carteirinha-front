@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import { useEffect, useState } from 'react';
 import styles from './edit.module.scss';
-import { getApiClient } from '../../services/axios.js';
-import showToast from '../utils/toast';
-import { Logo } from '../utils/icons';
-import Sidebar from '../Navbar/SideBar';
+import { getApiClient } from 'src/services/axios';
+import showToast from 'src/components/utils/toast';
+import { Logo } from 'src/components/utils/icons';
+import Sidebar from 'src/components/Navbar/SideBar';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { firebaseStorage } from '../../services/firebase';
-import { formatDateToFront } from '../utils/date';
-import { checkToken } from '../../Pages/Home/Home';
+import { formatDateToFront } from 'src/components/utils/date';
+import { checkToken } from '../Home/Home';
 
 export default function Edit() {
 	const [user, setUser] = useState(undefined);

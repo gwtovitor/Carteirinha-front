@@ -18,21 +18,6 @@
 		"outDir": "./dist",
 		"baseUrl": ".",
 		"skipLibCheck": true,
-
-		"paths": {
-			"@config/*": ["./src/config/*"],
-			"@controllers/*": ["./src/controllers/*"],
-			"@domain/*": ["./src/domain/*"],
-			"@entities/*": ["./src/entities/*"],
-			"@skillgame/*": ["./src/entities/games/skillgame/*"],
-			"@lib/*": ["./src/lib/*"],
-			"@repos/*": ["./src/repositories/*"],
-			"@routes/*": ["./src/routes/*"],
-			"@services/*": ["./src/services/*"],
-			"@email/*": ["./src/infra/email/*"],
-			"@middleware/*": ["./src/middleware/*"],
-			"@infra/*": ["./src/infra/*"]
-		}
 	},
 	"exclude": ["node_modules", "dist"],
 	"include": ["src/**/*"]
