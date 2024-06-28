@@ -15,7 +15,6 @@ export const checkToken = async (setUser) => {
 		const response = await getApiClient(tk).get(
 			`/user/${decodedToken.data.user.id}`
 		);
-		console.log(response);
 		setUser(response.data);
 	} catch (error) {
 		showToast({
@@ -26,8 +25,6 @@ export const checkToken = async (setUser) => {
 		setTimeout(() => {
 			window.location.href = '/';
 		}, 3000);
-
-		console.error('Erro ao verificar token:', error);
 	}
 };
 

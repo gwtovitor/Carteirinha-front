@@ -68,13 +68,11 @@ export default function Signup({ setOpenLogin }) {
 						text = 'Email já cadastrado';
 					}
 					showToast({ text: text, type: 'error' });
-					console.error('Erro ao realizar cadastro:', error);
 				}
 			} catch (error) {
 				text =
 					'Erro ao realizar upload do arquivo, verifique se o navegador possui as permissões';
 				showToast({ text: text, type: 'error' });
-				console.error('Erro ao enviar arquivo:', error);
 			}
 		}
 	};

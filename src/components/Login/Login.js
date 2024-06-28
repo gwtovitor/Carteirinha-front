@@ -31,7 +31,6 @@ export default function Login() {
             window.location.href = '/home';
         } catch (error) {
             showToast({ text: 'Usuário ou senha inválidos', type: 'error' });
-            console.error('Erro ao realizar login:', error);
         }
     };
 

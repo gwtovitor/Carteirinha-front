@@ -64,7 +64,6 @@ export default function Edit() {
 				text: 'Erro ao salvar dados, tente novamente.',
 				type: 'error',
 			});
-			console.error('Erro ao atualizar dados:', error);
 		}
 	};
 

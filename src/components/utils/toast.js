@@ -14,7 +14,6 @@ const toastConfig = {
 };
 
 export default function showToast({text, type}) {
-  console.log(text)
 	if (type === 'error') {
 		toast.error(text, toastConfig);
 	} else {
